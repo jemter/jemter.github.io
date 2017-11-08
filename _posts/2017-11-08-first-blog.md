@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      哎呀呀第一篇博客啊~~
-subtitle:   哎呀呀第一篇博客啊~~
+title:      哎呀呀第一篇博客啊
+subtitle:   哎呀呀第一篇博客啊
 date:       2017-11-08
 author:     liuliping
 header-img: img/post-bg-re-vs-ng2.jpg
