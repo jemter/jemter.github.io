@@ -6,9 +6,6 @@ date:       2017-11-08
 author:     liuliping
 header-img: img/post-bg-re-vs-ng2.jpg
 catalog: true
-tags:
-    - 博客
----
 
 # 终于开始了  
 
