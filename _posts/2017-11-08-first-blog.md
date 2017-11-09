@@ -7,8 +7,7 @@ author:     liuliping
 header-img: img/post-bg-re-vs-ng2.jpg
 catalog: true
 tags:
-    博客
-    linux
+    - 博客
 ---
 
 # 终于开始了  
