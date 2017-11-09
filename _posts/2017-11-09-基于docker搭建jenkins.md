@@ -6,8 +6,6 @@ date:       2017-11-09
 author:     liuliping
 header-img: img/post-bg-re-vs-ng2.jpg
 catalog: true
-tags:
-    - docker
 ---
 
 # jenkins介绍
