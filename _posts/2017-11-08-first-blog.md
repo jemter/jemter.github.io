@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "哎呀呀第一篇博客啊"
+title:    "哎呀呀第一篇博客啊"
 subtitle:   "哎呀呀第一篇博客啊"
 date:       2017-11-08
 author:     "liuliping"
@@ -8,13 +8,13 @@ header-img: img/post-bg-re-vs-ng2.jpg
 catalog: true
 tags:
     - 博客
-    - 互联网
+    - linux
 ---
 
 # 终于开始了  
 
 拖了那么久终于开始建立一个属于自己的博客了。  
-原来是想直接搭建在自己的小服务器里的，但是考虑到众多因素 ~~就是没钱~~ 。就直接搭建在Gayhub Page上了。
+原来是想直接搭建在自己的小服务器里的，但是考虑到众多因素 。就直接搭建在Gayhub Page上了。
 
 ## 建立博客的主要目的
 * 分享自己每天究竟在干啥
