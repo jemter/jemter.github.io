@@ -13,12 +13,13 @@ catalog: true
 Jenkins是一个开源软件项目，是基于Java开发的一种持续集成工具，用于监控持续重复的工作，旨在提供一个开放易用的软件平台，使软件的持续集成变成可能。
 
 # jenkins功能
-1、持续的软件版本发布/测试项目。
+1.持续的软件版本发布/测试项目。
 
-2、监控外部调用执行的工作。
+2.监控外部调用执行的工作。
 
 # 系统环境
-CentOS 7、docker
+* CentOS 7
+* docker
 
 ## 安装docker环境
 #### 使用仓库安装docker ce
@@ -48,12 +49,83 @@ CentOS 7、docker
      $ sh get-docker.sh
 ```
 
+## jenkins安装
+#### 使用docker jenkins images
+```
+     # 启动docker服务
+     $ systemctl start docker
+     
+     # 搜索jenkins镜像
+     $ docker search jenkins
+   
+     # 下载jenkins镜像
+     $ docker pull jenkins
+```
+     
+>jenkins打包编译需要使用docker命令，我这里使用docker run的-v参数将宿主机的docker环境挂载到了jenkins容器中
 
-## 时间与更新速度  
-鬼才知道我想什么时候更新，毕竟我打字那么慢，我觉得以后可以把这东西当成自己的一个小圈子，于世界分享经验，看法于经历。
+#### 编写jenkins的dockerfile安装依赖和jenkins相应插件
+```
+dockerfile文件内容
+FROM jenkins
+ 
+USER root
+RUN apt-get update \
+      && apt-get install -y sudo libltdl7 \
+      && rm -rf /var/lib/apt/lists/*
+RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
+ 
+USER jenkins
+COPY plugins.txt /usr/share/jenkins/plugins.txt
+RUN /usr/local/bin/plugins.sh /usr/share/jenkins/FROM jenkins
+ 
+USER root
+RUN apt-get update \
+      && apt-get install -y sudo libltdl7 \
+      && rm -rf /var/lib/apt/lists/*
+RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
+ 
+USER jenkins
+COPY plugins.txt /usr/share/jenkins/plugins.txt
+RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
 
-# 关于未来的打算
-我也想把这个博客一直做下去，因为这东西真的挺好的，毕竟在信息大爆炸的时代，大家热衷于快餐的阅读，并没有时间静下来思考。我也希望以后我能多读点书，成为一个对社会有用的人。
+plugins.txt文件内容(列出jenkins要安装的插件)
+structs
+ssh-credentials
+credentials
+junit
+script-security
+mailer
+workflow-scm-step
+workflow-step-api
+scm-api
+git
+matrix-project
+ssh-slaves
+chucknorris
+greenballs
+ws-cleanup
+git-client
+durable-task
+```
 
->写在最后：
-希望今后能够坚持学习下去~~
+#### 打包生成新的jenkins镜像
+```
+     # 基于dockerfile构建新的jenkins镜像
+     $ docker build -t dockerjenkins:v1.0 .
+```
+
+#### 启动jenkins容器
+```
+     # docker run jenkins container
+     $ docker run -it -d --restart always --name jenkins -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker -p 8080:8080 dockerjenkins:v1.0
+```
+
+## 验证
+
+jenkins默认开启的是8080端口，浏览器访问127.0.0.1:8080
+
+>这里因为宿主机是centos7,jenkins容器使用的基础镜像不是centos,直接将宿主机的docker程序挂载到容器中不知道会不会有什么问题
+
+
+[Google](http://www.google.com/)
