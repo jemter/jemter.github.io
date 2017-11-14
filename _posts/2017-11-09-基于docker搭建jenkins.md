@@ -9,6 +9,7 @@ catalog: true
 ---
 
 # jenkins介绍
+
 Jenkins是一个开源软件项目，是基于Java开发的一种持续集成工具，用于监控持续重复的工作，旨在提供一个开放易用的软件平台，使软件的持续集成变成可能。
 
 # jenkins功能
@@ -17,30 +18,32 @@ Jenkins是一个开源软件项目，是基于Java开发的一种持续集成工
 2、监控外部调用执行的工作。
 
 # 系统环境
+
 CentOS 7、docker
 
 ## 安装docker环境
+
 #### 使用仓库安装docker ce
-     安装需要的软件包
+     # 安装需要的软件包
      $ sudo yum install -y yum-utils device-mapper-persistent-data lvm2
      
-     设置标准仓库
+     # 设置标准仓库
      $ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
      
-     安装docker ce
+     # 安装docker ce
      $ yum install docker-ce -y
      
-     列出docker的可选版本
+     # 列出docker的可选版本
      $ yum list docker-ce --showduplicates | sort -r
      
-     如果想让非root用户使用docker，需将用户加入到docker用户组中
+     # 如果想让非root用户使用docker，需将用户加入到docker用户组中
      $ sudo usermod -aG docker your-user
      
 #### 使用脚本安装docker ce
-     下载安装脚本
+     # 下载安装脚本
      $ curl -fsSL get.docker.com -o get-docker.sh
      
-     执行安装脚本
+     # 执行安装脚本
      $ sh get-docker.sh
 
 
