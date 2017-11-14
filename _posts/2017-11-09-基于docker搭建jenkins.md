@@ -24,42 +24,42 @@ Jenkins是一个开源软件项目，是基于Java开发的一种持续集成工
 ## 安装docker环境
 #### 使用仓库安装docker ce
 ```
-     # 安装需要的软件包
-     $ sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+# 安装需要的软件包
+$ sudo yum install -y yum-utils device-mapper-persistent-data lvm2
      
-     # 设置标准仓库
-     $ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+# 设置标准仓库
+$ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
      
-     # 安装docker ce
-     $ yum install docker-ce -y
+# 安装docker ce
+$ yum install docker-ce -y
      
-     # 列出docker的可选版本
-     $ yum list docker-ce --showduplicates | sort -r
+# 列出docker的可选版本
+$ yum list docker-ce --showduplicates | sort -r
      
-     # 如果想让非root用户使用docker，需将用户加入到docker用户组中
-     $ sudo usermod -aG docker your-user
+# 如果想让非root用户使用docker，需将用户加入到docker用户组中
+$ sudo usermod -aG docker your-user
 ```
 
 #### 使用脚本安装docker ce
 ```
-     # 下载安装脚本
-     $ curl -fsSL get.docker.com -o get-docker.sh
+# 下载安装脚本
+$ curl -fsSL get.docker.com -o get-docker.sh
      
-     # 执行安装脚本
-     $ sh get-docker.sh
+# 执行安装脚本
+$ sh get-docker.sh
 ```
 
 ## jenkins安装
 #### 使用docker jenkins images
 ```
-     # 启动docker服务
-     $ systemctl start docker
+# 启动docker服务
+$ systemctl start docker
      
-     # 搜索jenkins镜像
-     $ docker search jenkins
+# 搜索jenkins镜像
+$ docker search jenkins
    
-     # 下载jenkins镜像
-     $ docker pull jenkins
+# 下载jenkins镜像
+$ docker pull jenkins
 ```
      
 >jenkins打包编译需要使用docker命令，我这里使用docker run的-v参数将宿主机的docker环境挂载到了jenkins容器中
@@ -111,14 +111,13 @@ durable-task
 
 #### 打包生成新的jenkins镜像
 ```
-     # 基于dockerfile构建新的jenkins镜像
-     $ docker build -t dockerjenkins:v1.0 .
+# 基于dockerfile构建新的jenkins镜像$ docker build -t dockerjenkins:v1.0 .
 ```
 
 #### 启动jenkins容器
 ```
-     # docker run jenkins container
-     $ docker run -it -d --restart always --name jenkins -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker -p 8080:8080 dockerjenkins:v1.0
+# docker run jenkins container
+$ docker run -it -d --restart always --name jenkins -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker -p 8080:8080 dockerjenkins:v1.0
 ```
 
 ## 验证
