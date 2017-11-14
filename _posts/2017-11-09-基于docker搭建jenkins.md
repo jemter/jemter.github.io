@@ -127,4 +127,5 @@ jenkins默认开启的是8080端口，浏览器访问127.0.0.1:8080
 
 >这里因为宿主机是centos7,jenkins容器使用的基础镜像不是centos,直接将宿主机的docker程序挂载到容器中不知道会不会有什么问题
 
-<http://container-solutions.com/running-docker-in-jenkins-in-docker/>
+>参考文献
+> -<http://container-solutions.com/running-docker-in-jenkins-in-docker/>
